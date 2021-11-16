@@ -16,18 +16,23 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
+      backgroundColor: Colors.black,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
+            icon: Icon(Icons.shopping_bag,color: Colors.white,),
             label: 'Shop',
           ),
+            BottomNavigationBarItem(
+            icon: Icon(Icons.home,color: Colors.white,),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart, color: Colors.white,),
             label: 'Cart',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.purple,
         onTap: _onItemTapped,
     );
     
