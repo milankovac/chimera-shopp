@@ -1,4 +1,6 @@
+import 'package:chimera/models/Cart.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductView extends StatelessWidget {
   final product;
@@ -6,6 +8,7 @@ class ProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = Provider.of<Cart>(context, listen: false);
     return Center(
       child: Padding(
         padding: EdgeInsets.all(20.0),
@@ -23,11 +26,13 @@ class ProductView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      product.price,
+                      product.price.toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    const IconButton(
-                        onPressed: null, icon: Icon(Icons.shopping_cart))
+                    IconButton(
+                        onPressed: (){
+                         cart.addItem(product.id, product.price, product.name);
+                        }, icon: Icon(Icons.shopping_cart))
                   ],
                 ),
               ],

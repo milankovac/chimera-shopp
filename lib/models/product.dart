@@ -1,8 +1,10 @@
 
+import 'dart:ffi';
+
 class Product {
   final String id;
   final String name;
-  final String price;
+  final num price;
   final String image;
 
   Product({
