@@ -6,12 +6,14 @@ import 'dart:math';
 
 class CartItem {
   final String id;
+  final String image;
   final String title;
   final int quantity;
-  final num price;
+  final int price;
 
   CartItem({
     required this.id,
+    required this.image,
     required this.title,
     required this.quantity,
     required this.price,
@@ -29,13 +31,19 @@ class Cart with ChangeNotifier {
     return _items.length;
   }
 
+//get cart items
+  Map<String, CartItem> get items {
+    return {..._items};
+  }
+
 //add item in cart
-  void addItem(String productId, num price, String title) {
+  void addItem(String productId, String image, int price, String title) {
     if (_items.containsKey(productId)) {
       _items.update(
           productId,
           (existingCartItem) => CartItem(
               id: existingCartItem.id,
+              image: existingCartItem.image,
               title: existingCartItem.title,
               quantity: existingCartItem.quantity + 1,
               price: existingCartItem.price));
@@ -43,7 +51,8 @@ class Cart with ChangeNotifier {
       _items.putIfAbsent(
           productId,
           () => CartItem(
-              id: getRandomString(10),
+              id: DateTime.now().toString(),
+              image: image,
               title: title,
               quantity: 1,
               price: price));
@@ -51,7 +60,9 @@ class Cart with ChangeNotifier {
     notifyListeners();
   }
 
-//generate random string for cart id
-  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
-      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+//remove item from cart
+  void removeItem(String productId) {
+    _items.remove(productId);
+    notifyListeners();
+  }
 }

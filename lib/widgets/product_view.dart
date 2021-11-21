@@ -2,7 +2,6 @@ import 'package:chimera/models/Cart.dart';
 import 'package:chimera/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class ProductView extends StatelessWidget {
   final product;
@@ -48,7 +47,7 @@ class ProductView extends StatelessWidget {
                               return alert;
                             },
                           );
-                          cart.addItem(product.id, product.price, product.name);
+                          cart.addItem(product.id,product.image, product.price, product.name);
                         },
                         icon: const Icon(Icons.shopping_cart))
                   ],

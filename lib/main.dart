@@ -4,21 +4,28 @@ import 'package:provider/provider.dart';
 
 //pages
 import './pages/login.dart';
-import 'package:chimera/pages/shop.dart';
+import './pages/shop.dart';
+import './pages/cart.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'MyShop',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: ChangeNotifierProvider<Cart>(
-          create: (context) => Cart(),
-          child: const ShopPage(),
-        ));
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: Cart())
+      ],
+      child: MaterialApp(
+          title: 'MyShop',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home:const ShopPage(),
+          routes: {
+            CartPage.routeName: (ctx) => CartPage(),
+            ShopPage.routeName:(ctx) => ShopPage(),
+          }),
+    );
   }
 }
