@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:chimera/models/Cart.dart';
+import 'package:chimera/models/products.dart';
 import 'package:chimera/widgets/alert.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +21,7 @@ class ProductView extends StatelessWidget {
         child: Container(
             color: Colors.white,
             width: 250,
-            height: 320,
+            height: 340,
             child: Column(
               children: [
                 FadeInImage.assetNetwork(
@@ -32,12 +35,26 @@ class ProductView extends StatelessWidget {
                 Text(product.name,
                     style: const TextStyle(
                         color: Colors.black, fontWeight: FontWeight.bold)),
+                Container(
+                  height: 20,
+                ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      product.price.toString() + '\$',
+                      '\$' + product.price.toString(),
                       style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Consumer<Products>(
+                      builder: (ctx, products,__) => IconButton(
+                        onPressed: () {
+                          products.changeFavorite(product.id);
+                        },
+                        icon: Icon(
+                          product.favorite ? Icons.favorite : Icons.favorite_border,
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
                     IconButton(
                         onPressed: () {
@@ -47,7 +64,8 @@ class ProductView extends StatelessWidget {
                               return alert;
                             },
                           );
-                          cart.addItem(product.id,product.image, product.price, product.name);
+                          cart.addItem(product.id, product.image, product.price,
+                              product.name);
                         },
                         icon: const Icon(Icons.shopping_cart))
                   ],

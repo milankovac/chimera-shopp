@@ -45,7 +45,7 @@ class ShopPage extends StatelessWidget {
           SingleChildScrollView(
               child: Column(
             children: [
-              for (var product in products) ProductView(product),
+              for (var product in Products.products) ProductView(product),
             ],
           )),
         ],

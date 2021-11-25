@@ -6,14 +6,17 @@ class SliderShop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = ['https://www.270shop.com/skin/1792b.jpg','https://www.270shop.com/skin/1792a.jpg','https://www.masports.co.uk/ekmps/shops/37b2ca/resources/design/VodWhRaQ.jpeg','https://www.masports.co.uk/ekmps/shops/37b2ca/resources/design/Heelys%20Spring%20Summer%202018%20Product%20Web%20Banner%20A%201920x700.jpg','https://www.masports.co.uk/ekmps/shops/37b2ca/resources/design/kgb-bb.gif','https://www.masports.co.uk/ekmps/shops/37b2ca/resources/design/htKR9wMA.jpeg'];
+    final images = ['https://www.tike.rs/files/images/2021/10/26/tike_sneakerville_playhouse_2021.jpg',
+    'https://www.tike.rs/files/images/2021/11/12/tike_blog_sneakerville_2021_recap_cover_photo.jpg',
+    'https://www.tike.rs/files/images/2021/9/15/tike_nike_air_max_96_II_QS_ft_drill.jpg',
+    'https://www.tike.rs/files/images/2021/9/1/tike_masayah_adidas_forum_low_sneakers.jpg',
+    'https://www.tike.rs/files/images/2021/6/28/1.jpg'];
     return CarouselSlider(
-      options: CarouselOptions(height:150.0, autoPlay: true,),
+      options: CarouselOptions(height:170.0, autoPlay: true,autoPlayInterval: const Duration(seconds: 2)),
       items: images.map((i) {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-                width: 250,
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 child: Image.network(i)
                 );

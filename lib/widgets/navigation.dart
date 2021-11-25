@@ -1,8 +1,10 @@
 import 'package:chimera/pages/cart.dart';
+import 'package:chimera/pages/home.dart';
 import 'package:chimera/pages/shop.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:page_transition/page_transition.dart';
+
 class Navigation extends StatefulWidget {
   const Navigation({Key? key}) : super(key: key);
 
@@ -10,18 +12,34 @@ class Navigation extends StatefulWidget {
   _NavigationState createState() => _NavigationState();
 }
 
+int _selectedIndex = 1;
+
 class _NavigationState extends State<Navigation> {
-  int _selectedIndex = 1;
   void _onItemTapped(int index) {
     switch (index) {
       case 0:
-        Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: ShopPage()));
+        if (_selectedIndex != 0) {
+          Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.leftToRight, child: ShopPage()));
+        }
         break;
       case 1:
-        Navigator.of(context).pushReplacementNamed('/shop');
+        if (_selectedIndex != 1) {
+          Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.bottomToTop, child: HomePage()));
+        }
         break;
       case 2:
-        Navigator.push(context, PageTransition(type: PageTransitionType.bottomToTop, child: CartPage()));
+        if (_selectedIndex != 2) {
+          Navigator.push(
+              context,
+              PageTransition(
+                  type: PageTransitionType.rightToLeft, child: CartPage()));
+        }
         break;
     }
     setState(() {
